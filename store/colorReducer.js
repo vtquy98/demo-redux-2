@@ -1,10 +1,13 @@
 export const TURN_ON_LIGHT = "TURN_ON_LIGHT";
 export const TURN_OFF_LIGHT = "TURN_OFF_LIGHT";
 export const CHANGE_COLOR = "CHANGE_COLOR";
+export const INCREASE_BRIGHTNESS = "INCREASE_BRIGHTNESS";
+export const DECREASE_BRIGHTNESS = "DECREASE_BRIGHTNESS";
 
 const initSate = {
   color: "BLACK",
-  opacity: 1
+  opacity: 1,
+  brightness: 1
 };
 
 const getRandomColor = () => {
@@ -37,6 +40,22 @@ const colorReducer = (state = initSate, { type, payload }) => {
       ...state,
       color: getRandomColor()
     };
+  }
+
+  if (type === INCREASE_BRIGHTNESS) {
+    if (state.brightness + 0.1 <= 1) {
+      return { ...state, brightness: state.brightness + 0.1 };
+    }
+    return { ...state };
+  }
+
+  if (type === DECREASE_BRIGHTNESS) {
+    // console.log(DECREASE_BRIGHTNESS);
+    if (state.opacity - 0.1 >= 0) {
+      return { ...state, brightness: state.brightness - 0.1 };
+    } else {
+      return { ...state };
+    }
   }
 
   return { ...state };

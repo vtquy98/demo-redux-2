@@ -17,7 +17,6 @@ const buttonComponent = ({ title, onClick2 }) => {
             margin: 10px;
             font-size: 16px;
             border-radius: 5px;
-            float: left;
           }
         `}
       </style>

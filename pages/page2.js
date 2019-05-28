@@ -57,19 +57,19 @@ class bulb extends Component {
   // };
 
   render() {
-    // const { currentColor, brightness } = this.state;
-    const { images, color } = this.props;
-    console.log(color.color, color.opacity);
+    const { color, opacity, brightness } = this.props;
+    console.log(color, opacity, brightness);
+    let display;
+    if (opacity == 0) {
+      display = "none";
+    }
     return (
       <div>
         <Head title="Page 2" />
         <Nav />
 
         <div className="container">
-          <Light fill={color.color} opacity={color.opacity} />
-          {/* <Btn onClick2={this.changeColor} title="Change Color" />
-          <Btn onClick2={this.increaseBrightness} title="+ Brightness" />
-          <Btn onClick2={this.decreaseBrightness} title="- Brightness" /> */}
+          <Light fill={color} opacity={brightness} display={display} />
         </div>
 
         <style jsx>
@@ -86,8 +86,9 @@ class bulb extends Component {
 
 const mapStateToProps = state => ({
   images: state.images,
-  color: state.colorReducer,
-  opacity: state.opacity
+  color: state.colorReducer.color,
+  opacity: state.colorReducer.opacity,
+  brightness: state.colorReducer.brightness
 });
 
 export default connect(
